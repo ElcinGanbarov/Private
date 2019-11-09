@@ -1,0 +1,81 @@
+.wrapper{
+    width: 1170px;
+    margin:0 auto;
+    padding: 100px;
+}
+.text{
+    width: 100px;
+    height: 100px;
+    background: blueviolet;
+    position: relative;
+    /* transition:all 1s;
+    transition-delay: 1s; */
+    animation-name:TextChange;
+    animation-duration: 3s;
+    /* animation-iteration-count: infinite; */
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+/*     
+    transform:rotate(-15deg);
+    transform: translate(-300px); */
+   
+}
+/* .text:hover{
+    background: aquamarine;
+    transform:rotate(-45deg);
+    transition-duration: 3s;
+   
+} */
+@keyframes TextChange{
+    /* 0%{
+        top:0px;
+        left:0px;
+    }
+    20%{
+        top:200px;
+        left:100px;
+    }
+    40%{
+        top: 0;
+        left: 200px;
+    }
+    60%{
+        top: 200px;
+        left: 300px;
+    }
+    80%{
+        top: 0;
+        left:400px;
+    }
+    100%{
+        top: 200px;
+        left: 500px;
+    }*/
+    from{
+        background-color: blueviolet;
+    }
+    to{
+        background-color: chocolate;
+        transform: rotate(45deg);
+    }
+} 
+.gradient{
+    width: 200px;
+    height: 200px;
+   
+    background-image: linear-gradient(to right,  red, green);
+    margin-top: 50px;
+    transition-delay: 1s;
+    transition-duration: 4s;
+}
+.gradient:hover{
+    transform: rotate(45deg);
+}
+.circle{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: repeating-radial-gradient(yellow, black);
+    margin: 30px;
+    box-shadow: 5px 5px;
+}

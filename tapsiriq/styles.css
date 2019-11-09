@@ -1,0 +1,37 @@
+/* .wrapper{
+    width: 1170px;
+    margin: 0 auto;
+}
+.wrapper .row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items:initial;
+  height: 1000px;
+} */
+ .item{
+    /* width: 22%; */
+      height: 200px; 
+    background-color: crimson;
+    border: 1px solid black;
+    
+    /* font-size: 40px;
+    text-align: center;
+    line-height: 200px; */
+    /* margin-right: 2px; */
+}
+/* .flex-1{
+  flex: 1;
+}
+.flex-2{
+  flex: 2;
+}
+.flex-3{
+  flex: 3;
+}
+.flex-4{
+  flex: 4;
+}
+.flex-5{
+  flex: 5;
+} */

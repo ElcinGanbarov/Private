@@ -1,0 +1,34 @@
+#selector{
+    padding: 100px;
+}
+.color1{
+    height: 200px;
+    background-color: aqua;
+}
+.color2{
+    height: 200px;
+    background-color: blueviolet;
+}
+.color3{
+    height: 200px;
+    background-color: chartreuse;
+}
+.color4{
+    height: 200px;
+    background-color: coral;
+}
+.item{
+    margin-top: 10px;
+}
+.section{
+    width: 100%;
+    height: 200px;
+}
+.color5{
+    background-color: maroon;
+    height: 200px;
+}
+.color6{
+    background-color: mediumseagreen;
+    height: 200px;
+}

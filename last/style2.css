@@ -1,0 +1,16 @@
+img{
+    max-width: 100%;
+}
+.section{
+    position: relative;
+}
+.icon{
+position: absolute;
+top: 0;
+right: 0;
+background-color: aqua;
+width: 30px;
+height: 30px;
+text-align: center;
+line-height: 30px;
+}

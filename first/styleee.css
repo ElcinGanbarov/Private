@@ -1,0 +1,70 @@
+.wrapper{
+    width: 1170px;
+    margin: 0 auto;
+}
+.single{
+    width: 25%;
+    padding: 30px;
+    
+    
+}
+.single .action{
+    position: relative;
+    overflow: hidden;
+
+}
+.single .action img{
+    max-width: 100%;
+
+}
+
+.single .action a{
+ text-decoration: none;
+ display: inline-block;
+ background-color:white;
+ width: 46px;
+ height: 46px;
+ line-height: 46px;
+ text-align: center;
+ border-radius: 100%;
+ position: absolute;
+ bottom: 30px;
+ transform: translateY(76px);
+
+
+}
+
+.single .action a.heart{
+     left: 16%;
+     transition: transform 0.2s;
+
+}
+.single .action a.search{
+    left: 40%;
+    transition: transform 0.2s;
+    transition-delay: 0.1s;
+
+}
+.single .action a.basket{
+    left: 64%;
+    transition: transform 0.2s;
+    transition-delay: 0.2s;
+}
+.single .action:hover a.heart{
+    transform: translateY(0);
+    background-color:dimgray;
+    
+    
+}
+.single .action:hover a.search{
+    transform: translateY(0);
+}
+.single .action:hover a.basket{
+    transform: translateY(0);
+    background-color:dimgray;
+}
+.single .action img:hover{
+    transform: scale(1.1);
+}
+
+
