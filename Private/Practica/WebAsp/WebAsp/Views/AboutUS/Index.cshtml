@@ -1,0 +1,13 @@
+﻿@model IEnumerable<string>
+@{
+    ViewData["Title"] = "Index";
+}
+<ul class="list-group">
+    @foreach(var item in Model)
+    {
+        <li class=" list-group-item">@item</li>
+    }
+</ul>
+<h1>Index</h1>
+
+<vc:partner-list col-no="2"></vc:partner-list>

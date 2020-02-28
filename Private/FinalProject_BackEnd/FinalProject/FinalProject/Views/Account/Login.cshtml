@@ -1,0 +1,68 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="index.html">Əsas səhifə</a>
+            </li>
+            <li class="breadcrumb-item active">Giriş</li>
+        </ol>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+<main id="main-login">
+    <!-- Login Page Start Here -->
+    <div class="login ptb-80">
+        <div class="container">
+            <h3 class="login-header">Profilinizə giriş edin </h3>
+            <div class="row">
+                <div class="col-xl-6 col-lg-8 offset-xl-3 offset-lg-2">
+                    <div class="login-form">
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="alert-danger mb-3"></div>
+                            <div class="form-group row">
+                                <label asp-for="Email" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-7">
+                                    <input asp-for="Email" class="form-control" id="email" placeholder="Email..." />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="Password" class="col-sm-3 col-form-label">Şifrə</label>
+                                <div class="col-sm-7">
+                                    <input asp-for="Password" class="form-control" id="inputPassword" placeholder="Şifrə..." />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                    <button class="btn show-btn pass" type="button">Göstər</button>
+                                </div>
+                            </div>
+                            <div class="form-group row ml-0">
+                                <label asp-for="RememberMe" style="font-size:15px;"></label>
+                                <div class="col-sm-7">
+                                    <input asp-for="RememberMe" style="margin-left: 27px;" />
+
+                                </div>
+                            </div>
+                            <div class="login-details text-center mb-25">
+                                <button type="submit" class="login-btn">Giriş et</button>
+                            </div>
+                            <div class="login-footer text-center">
+                                <p>Profiliniz yoxdur? <a asp-controller="Account" asp-action="Register">Yeni profil yarat</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login Page End Here -->
+</main>
+
+
+
+
+

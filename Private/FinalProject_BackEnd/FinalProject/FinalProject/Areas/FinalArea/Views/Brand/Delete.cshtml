@@ -1,0 +1,36 @@
+﻿
+@model Brand
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="content-body">
+    <div class="row">
+        <div class="col-12">
+            <span class="text-info">Name:</span>
+            <p>@Model.Name</p>
+            <span class="text-info">Details:</span>
+            <p>@Html.Raw(Model.Details)</p>
+
+            <p class="text-danger mt-3">Are you sure delete this?</p>
+
+            <div class="row">
+                <div class="col-12">
+                    <form method="post">
+                        <input type="submit" class="btn btn-outline-danger" value="Delete" />
+                    </form>
+                </div>
+            </div>
+
+            <div class="row mt-15">
+                <div class="col-12">
+                    <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

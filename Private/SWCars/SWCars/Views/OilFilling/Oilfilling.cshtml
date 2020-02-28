@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "Oilfilling";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<h3 class="font-family avs">
+    Oil Filling
+    <button type="button" class="btn btn-primary ml-sty" style="margin-left:30px;" data-toggle="modal" data-target="#examplemodal" data-whatever="mdo"><i class="fa fa-plus-square" style="padding-right:10px;"></i> Create New</button>
+
+</h3>
+
+<div class="modal fade" id="examplemodal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new OilFilling form</h5>
+                <button type="button" class="close" data-dissmiss="modal" aria-label="close">
+                    <span aria-hidden="true" &times;></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row-mm">
+                            <div class="col-md-5"><label class="col-form-label" style="float:left;">Car</label></div>
+                            <div class="col-md-7">
+                                <select class="form-control font-family" id="bancode">
+                                    @{
+                                        List<SWCars.Models.DataModels.Car> carlist = (List<SWCars.Models.DataModels.Car>)ViewBag.Carlist;
+
+                                        <option id="bt" class="model"></option>
+
+                                        foreach (var mycar in carlist)
+                                        {
+                                            <option id="@mycar.Bancode" class="structure">@mycar.Bancode</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row-mm">
+                            <div class="col-md-5"><label class="col-form-label" style="float:left;">Oil Type</label></div>
+                            <div class="col-md-7">
+                                <select class="form-control font-family" id="carmarkaid">
+                                    @{
+                                        List<SWCars.Models.DataModels.OilType> typelist = (List<SWCars.Models.DataModels.OilType>)ViewBag.Typelist;
+
+                                        <option id="tt" class="type"></option>
+
+                                        foreach (var mytype in typelist)
+                                        {
+                                            <option id="@mytype.Id" class="structure">@mytype.OilTypeName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row-mm">
+                            <div class="col-md-5"><label class="col-form-label" style="float:left;">Oil Type Spesificname</label></div>
+                            <div class="col-md-7">
+                                <select class="form-control font-family" id="carmarkaid">
+                                    @{
+                                        List<SWCars.Models.DataModels.OilType> otslist= (List<SWCars.Models.DataModels.OilType>)ViewBag.Typelist;
+
+                                        <option id="st" class="otsp"></option>
+
+                                        foreach (var mytype in otslist)
+                                        {
+                                            <option id="@mytype.Id" class="structure">@mytype.OilTypeSpesificName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mm">
+                            <div class="col-md-5"><label for="recipient-name" class="col-form-label" style="float:left">Yurus</label></div>
+                            <div class="col-md-7"><input type="text" class="form-control" id="yurusid" style="float:left;" /></div>
+                        </div>
+                        <div class="row mm">
+                            <div class="col-md-5"><label for="recipient-name" class="col-form-label" style="float:left">Litr</label></div>
+                            <div class="col-md-7"><input type="text" class="form-control" id="litrid" style="float:left;" /></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="AddButton">Add Oilfilling</button>
+        </div>
+    </div>
+</div>
+<div id="tablediv">
+    @{
+        List<SWCars.Models.DataModels.OilFilling> Oiltypelist = (List<SWCars.Models.DataModels.OilFilling>)ViewBag.Fillinglist;
+
+        if (Oiltypelist == null || Oiltypelist.Count == 0)
+        {
+            <p class="font-family" style="font-size:15px;">Hecbir Yanacaq fealiyyeti Tapilmadi</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead class="thead-light">
+                    <tr class="font-family">
+                        <th>Bancode</th>
+                        <th> OilType</th>
+                        
+                        <th>Litr</th>
+                        <th>Yurus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var type in Oiltypelist)
+                    {
+                        <tr id="@type.Id" class="font-family" style="background-color:orange;">
+                            <td class='rowCell'>@type.Carid</td>
+                            <td class='rowCell'>@type.OilTypeId</td>
+                            <td class='rowCell'>@type.Litr</td>
+                            <td class='rowCell'>@type.Yurus</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+    $(document).ready(function myfunction() {
+
+
+        $("button#AddButton").click(function () {
+
+            var carid = $('select#bancode :selected').attr('');
+            var addlitr=$('input#litrid').val();
+            var addyurus=$('input#yurusid').val();
+            var oiltype = $('select#oiltypeid :selected').attr('id');
+            var oiltypespesific = $('select#oiltypespesificid :selected ').attr('id');
+
+            //if (oiltype.length == 0) {
+            //    alert('OilType daxil edilmemisdir');
+            //}
+            //if (oiltypespesific.length==0) {
+            //    alert('OilType spesificname daxil edilmemisdir');
+            //}
+            $('select#oiltypeid :selected').val('');
+            $('select#oiltypespesificid :selected ').val('');
+            $('select#bancode :selected').val('');
+            $('input#litid').val('');
+            $('input#yurusid').val('');
+            alert('aaa');
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("addoilfilling", "Oilfilling")',
+                dataType: 'json',
+                data: { oiltypeid: oiltype, litr: addlitr, yurus: addyurus, bancode: carid },
+                success: function (f) {
+                    
+                    if (f.Status == true) {
+                        var rowsCount = $("tbody tr").length;
+                        var table, rows;
+                       
+                        if (rowsCount == 0) {
+                            $("p").remove();
+                            table = "<table class='table'><thead class='thead-light'><tr class='font-family'><th>Bancode</th><th>OilType </th><th>Litr</th><th>Yurus</th></tr></thead><tbody><tr id=" +
+                                f.Message + " class='font-family'><td class='rowCell'>" + carid + "</td><td class='rowCell'>" + oiltype + "</td><td class='rowCell'>" + addlitr + "</td><td class='rowCell'>" + addyurus + "</td></tr>";
+                            $("div#tablediv").html(table);
+                           
+                        }
+                        else {
+                            rows = $("tbody").html() + "<tr id=" + f.Message + " class='font-family'><td class='rowCell'>" + carid +"</td><td class='rowCell'>" + oiltype +  "</td><td class='rowCell'>" + addlitr + "</td><td class='rowCell'>" + addyurus + "</td></tr>";
+                            $("tbody").html(rows);
+
+                        }
+                    }
+                    else if (data.Status == false) {
+                        alert(data.Message);
+                    }
+
+                },
+                error: function () {
+
+                }
+            });
+            $('.modal').modal('hide');
+
+        });
+    });
+
+</script>
+
+

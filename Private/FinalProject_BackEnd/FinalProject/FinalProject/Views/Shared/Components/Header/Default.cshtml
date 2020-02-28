@@ -1,0 +1,176 @@
+﻿@using FinalProject.ViewModels
+@model HeaderViewModel
+
+ <!-- Header Area Start Here -->
+<header class="header-area">
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-content-center text-center text-md-left" style="height:50px;">
+                <!-- Logo Start -->
+                <div class="col-md-3 col order-1 order-md-1 mb-sm-30">
+                    <div class="logo">
+                        <a asp-controller="Home" asp-action="Index"><img src="~/img/logo/@Model.Image" style="height: 60px;" alt="logo-img"></a>
+                    </div>
+                </div>
+                <!-- Logo End -->
+                <!-- Search Box Start Here -->
+                <div class="col-md-6  order-3 order-md-2" style="height:90px;z-index:1000;">
+                    <form method="get" asp-controller="Home"asp-action="SearchProduct">
+                     <div class="form-group mt-3">
+                     <input type="text" style="z-index:100000; margin: -6px;" autocomplete="off" class="form-control text-body btn-outline-primary" id="search" placeholder="Search ...">
+                     <div class="sear mt-3 mr-3">
+                         <ul  id="search-list">
+                             <li >
+                                 <a style="color:white;"></a>
+                             </li>
+                         </ul>
+                     </div>
+               </div>
+                   </form>
+               
+                </div>
+
+                <!-- Search Box End Here -->
+                <!-- Cart Box Start Here -->
+                <div class="col-md-3 col order-2 order-md-3 mb-sm-30">
+                            <div class="cart-box float-md-right" style="margin-top: 4px;">
+                                <div class="drodown-show">
+                                    <a href="#">
+                                        <p class="cart-title" style="font-size: 20px;">
+                                            Səbət <span class="fas fa-cart-arrow-down" style="font-size: 20px;"></span>
+                                        </p>
+
+                                    </a>
+                                        <ul class="dropdown cart-box-width">
+                                            <li>
+                                                <!-- Cart Footer Inner Start -->
+                                                <div class="cart-footer">
+                                                    <div class="cart-actions text-center">
+                                                        <a class="cart-checkout" href="/Cart/Index">Səbət</a>
+                                                    </div>
+                                                    <div class="cart-actions text-center mt-2">
+                                                        <a class="cart-checkout" href="checkout.html">Sifariş et</a>
+                                                    </div>
+                                                </div>
+                                                <!-- Cart Footer Inner End -->
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                <!-- Cart Box End Here -->
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom blue-bg header-sticky">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Menu Area Start Here -->
+                <div class="col-lg-10 d-none d-lg-block">
+                    <nav>
+                        <ul class="header-menu-list">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Əsas səhifə</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Shop" asp-action="Index">
+                                    TV &nbsp Noutbook &nbsp Telefonlar
+                                    &nbsp Planşetlər <i class="fas fa-sort-down"></i>
+                                </a>
+                                <!--  Mega-Menu Start -->
+                                <ul class="ht-dropdown megamenu">
+                                    @foreach (var category in Model.Categories)
+                                    {
+                                        <!-- Single Column Start -->
+                                        <li>
+                                            <ul>
+                                                <li class="menu-title">
+                                                    <a class="font-weight-bold" href="/shop/index?categoryid=@category.Id">@category.Name</a>
+
+                                                </li>
+                                                @foreach (var brand in category.Brands)
+                                                {
+                                                    <li>
+                                                        <a href="/shop/index?brandid=@brand.Id&categoryid=@category.Id">@brand.Name</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                        <!-- Single Column End -->
+                                    }
+                                </ul>
+                                <!-- Mega-Menu End -->
+                            </li>
+                            <li><a asp-controller="Contact" asp-action="Index">Bizimlə əlaqə</a></li>
+                            <li><a asp-controller="About" asp-action="Index">Haqqımızda</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Menu Area End Here -->
+                <!-- Cart Box Start Here -->
+                <div class="col-lg-2">
+                    <div class="setting-box float-right">
+                        <ul>
+                            <li class="drodown-show ">
+                                <a href="#">
+                                    <span class="iconca fas fa-user-circle "></span>
+                                </a>
+                                <!-- Currency & Language Selection Start -->
+                                <ul class="dropdown cart-box-width currency-selector">
+                                    <li>
+                                        <h3>Daxil olmaq</h3>
+                                        <ul>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <li><a asp-controller="Account" asp-action="Index">Mənim səhifəm</a></li>
+                                                <li><a asp-controller="Account" asp-action="Logout">Çıxış</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a asp-controller="Account" asp-action="Register">Qeydiyyat</a></li>
+                                                <li><a asp-controller="Account" asp-action="Login">Daxil ol</a></li>
+
+                                            }
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Cart Box End Here -->
+            </div>
+            <!-- Row End -->
+            <!-- Mobile Menu Start Here -->
+            <div class="mobile-menu d-block d-lg-none" data-menu="Menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#">TV &nbsp Noutbook &nbsp Telefonlar &nbsp Planşetlər</a>
+                            <!-- Men Accessories Dropdown Start -->
+                            <ul class="submobile-mega-dropdown">
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <li>
+                                        <a href="/shop/index?categoryid=@category.Id">@category.Name</a>
+                                        <!-- Watches Dropdown Start -->
+                                    </li>
+                                }
+
+                            </ul>
+                            <!-- Men Accessories Dropdown End -->
+                        </li>
+                     
+                  
+                        <li><a asp-controller="Contact" asp-action="Index">Haqqımızda</a></li>
+                        <li><a asp-controller="About" asp-action="Index">Əlaqə</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Mobile Menu End Here -->
+        </div>
+        <!-- Container End -->
+    </div>
+</header>
+<!-- Header Area End Here -->

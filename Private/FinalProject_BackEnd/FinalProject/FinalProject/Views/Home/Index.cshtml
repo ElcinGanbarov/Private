@@ -1,0 +1,591 @@
+﻿@model HomeModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!-- Slider Area Start -->
+<div class="slider-area">
+    <!-- Slider Area Start Here -->
+    <div class="slider-activation owl-carousel">
+
+        @foreach (var slider in Model.HomeSliders)
+        {
+            <!-- Start Single Slide -->
+            <div class="slide align-center-left fullscreen animation-style-01 bg-image-1" style="background-image: url('img/background/back2.jpg'); background-repeat: no-repeat;
+              background-position: center center; background-size: cover;">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 col-md-5">
+                            <div class="sldier-right-img">
+                                <img src="~/img/@slider.Image" alt="slider-img">
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7">
+                            <div class="slider-content">
+                                <h6>@slider.TitleUp</h6>
+                                <h1>@slider.TitleUp</h1>
+                                <p>@Html.Raw(slider.Description)</p>
+                                <div class="slide-btn small-btn">
+                                    <a asp-controller="Shop" asp-action="Index">Sifariş et</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Slide -->
+        }
+
+    </div>
+    <!-- Slider Area End Here -->
+</div>
+<!-- Slider Area End -->
+<!-- Main start -->
+<main id="main-home" style="overflow: hidden">
+    <section id="product-new-static" class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Məhsullarımız</h3>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="img-big">
+                        <a href="/ProductDetail/index?producid=@Model.Products.ElementAt(0)?.Id&cateid=@Model.Products.ElementAt(0)?.BrandCategory.Categorie.Id"><img src="~/img/@Model.Products.ElementAt(0).ProductImages.FirstOrDefault()?.ImageUrl"></a>
+                        <a class="add-to-cart" data-id="@Model.Products.ElementAt(0)?.Id" ><i class="fas fa-shopping-cart"></i></a>
+                    </div>
+
+                    <style>
+                        .img-big{
+                            position:relative;
+                        }
+                        .add-to-cart{
+                            position:absolute;
+                            right: 10px;
+                            bottom: 25px;
+                            font-size: 20px;
+                            cursor: pointer;
+                            color: red !important;
+                            border: 1px solid green;
+                            border-radius: 10px;
+                            padding: 8px;
+                            padding-right: 12px;
+                            transition:all 1s;
+                        }
+                        .add-to-cart:hover{
+                            color:greenyellow !important;
+                            background-color:red;
+                            transform: rotate(360deg);
+
+                        }
+
+
+
+                    </style>
+                    
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card card-title">
+                                <img src="~/img/@Model.Products.ElementAt(5).ProductImages.FirstOrDefault()?.ImageUrl" class="card-img-top card-img">
+                                <div class="card-body" style="padding:3px;">
+                                    <a href="/ProductDetail/index?producid=@Model.Products.ElementAt(5).Id">
+                                        <p class="card-text" style="height:60px;font-size:18px">@Model.Products.ElementAt(5).Name</p>
+                                    </a>
+
+                                    <a class="add-to-cart" data-id="@Model.Products.ElementAt(5)?.Id"><i class="fas fa-shopping-cart"></i></a>
+                                    <p class="card-detail">@Model.Products.ElementAt(5).BrandCategory.Brand.Name </p>
+                                    @if (Model.Products.ElementAt(5).Discount == 0)
+                                    {
+                                        <span class="new-price"><span>$</span>@Model.Products.ElementAt(5).Price</span>
+
+                                    }
+                                    else
+                                    {
+                                        <span class="old-price"><span>$</span>@Model.Products.ElementAt(5).Price</span>
+                                        <span class="new-price"><span>$</span>@(Model.Products.ElementAt(5).Price - Model.Products.ElementAt(5).Price * Model.Products.ElementAt(5).Discount / 100)</span>
+                                        <span class="discount">@Model.Products.ElementAt(5).Discount<span>%</span></span>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="card card-title ">
+                                <img src="~/img/@Model.Products.ElementAt(7).ProductImages.FirstOrDefault()?.ImageUrl" class="card-img-top card-img" alt="...">
+                                <div class="card-body" style="padding:3px;">
+                                    <a href="/ProductDetail/index?producid=@Model.Products.ElementAt(7).Id">
+                                        <p class="card-text" style="height:60px;font-size:18px">@Model.Products.ElementAt(7).Name</p>
+                                    </a>
+                                    <a class="add-to-cart" data-id="@Model.Products.ElementAt(7)?.Id"><i class="fas fa-shopping-cart"></i></a>
+                                    <p class="card-detail">@Model.Products.ElementAt(7).BrandCategory.Brand.Name</p>
+                                    @if (Model.Products.ElementAt(7).Discount == 0)
+                                    {
+                                        <span class="new-price"><span>$</span>@Model.Products.ElementAt(7).Price</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="old-price"><span>$</span>@Model.Products.ElementAt(7).Price</span>
+                                        <span class="new-price"><span>$</span>@(Model.Products.ElementAt(7).Price - Model.Products.ElementAt(7).Price * Model.Products.ElementAt(7).Discount / 100)</span>
+                                        <span class="discount">@Model.Products.ElementAt(7).Discount<span>%</span></span>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card card-title">
+                                <img src="~/img/@Model.Products.ElementAt(3).ProductImages.FirstOrDefault()?.ImageUrl" class="card-img-top card-img">
+                                <div class="card-body" style="padding:3px;">
+                                    <a href="/ProductDetail/index?producid=@Model.Products.ElementAt(3).Id">
+                                        <p class="card-text" style="height:60px;font-size:18px">@Model.Products.ElementAt(3).Name</p>
+                                    </a>
+                                    <a class="add-to-cart" data-id="@Model.Products.ElementAt(3)?.Id"><i class="fas fa-shopping-cart"></i></a>
+                                    <p class="card-detail">@Model.Products.ElementAt(3).BrandCategory.Brand.Name</p>
+                                    @if (Model.Products.ElementAt(3).Discount == 0)
+                                    {
+                                        <span class="new-price"><span>$</span>@Model.Products.ElementAt(3).Price</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="old-price"><span>$</span>@Model.Products.ElementAt(3).Price</span>
+                                        <span class="new-price"><span>$</span>@(Model.Products.ElementAt(3).Price - Model.Products.ElementAt(3).Price * Model.Products.ElementAt(3).Discount / 100)</span>
+                                        <span class="discount">@Model.Products.ElementAt(3).Discount<span>%</span></span>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="card card-title ">
+                                <img src="~/img/@Model.Products.ElementAt(8).ProductImages.FirstOrDefault()?.ImageUrl" class="card-img-top card-img" alt="...">
+                                <div class="card-body" style="padding:3px;">
+                                    <a href="/ProductDetail/index?producid=@Model.Products.ElementAt(8).Id">
+                                        <p class="card-text" style="height:60px;font-size:18px">@Model.Products.ElementAt(8).Name</p>
+                                    </a>
+                                    <a class="add-to-cart" data-id="@Model.Products.ElementAt(8)?.Id"><i class="fas fa-shopping-cart"></i></a>
+                                    <p class="card-detail">@Model.Products.ElementAt(8).BrandCategory.Brand.Name</p>
+                                    @if (Model.Products.ElementAt(8).Discount == 0)
+                                    {
+                                        <span class="new-price"><span>$</span>@Model.Products.ElementAt(8).Price</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="old-price"><span>$</span>@Model.Products.ElementAt(8).Price</span>
+                                        <span class="new-price"><span>$</span>@(Model.Products.ElementAt(8).Price - Model.Products.ElementAt(8).Price * Model.Products.ElementAt(8).Discount / 100)</span>
+                                        <span class="discount">@Model.Products.ElementAt(8).Discount<span>%</span></span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="img-big" style="height:369px;">
+                        <a href="/ProductDetail/index?producid=@Model.Products.ElementAt(16)?.Id"><img src="~/img/@Model.Products.ElementAt(16).ProductImages.FirstOrDefault()?.ImageUrl"></a>
+                        <a class="add-to-cart"data-id="@Model.Products.ElementAt(16)?.Id"><i class="fas fa-shopping-cart"></i></a>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="feature" class="mt-5">
+        <!-- Featured Product Start Here -->
+        <div class="featured-pro pb-80">
+            <div class="container">
+                <div class="main-product-tab-area">
+                    <!-- Nav tabs -->
+                    <ul class="nav tabs-area pro-tabs-area" role="tablist">
+                        <li class="nav-item">
+                            <a class="active" data-toggle="tab" href="#best-deal">Ən çox baxılan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="tab" href="#new-pro">Yeni məhsullar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="tab" href="#featured">Endirimdə olanlar</a>
+                        </li>
+                    </ul>
+                    <!-- Tab Contetn Start -->
+                    <div class="tab-content">
+                        <div id="best-deal" class="tab-pane fade show active">
+                            <!-- Best Deal Product Activation Start Here -->
+                            <div class="feature-pro-active owl-carousel">
+                                @foreach (var product1 in Model.Products.Where(p=>p.ViewsCount>=10))
+                                {
+                                    <!-- Single Product Start -->
+                                    <div class="single-ponno-product">
+                                        <!-- Product Image Start -->
+                                        <div class="pro-img">
+                                            <div class="card card-title">
+                                                <img src="~/img/@product1.ProductImages.FirstOrDefault()?.ImageUrl" class="card-img-top card-img">
+                                                <div class="card-body">
+                                                    <a href="/ProductDetail/index?producid=@product1.Id">
+                                                        <p class="card-text">@product1.Name</p>
+                                                    </a>
+                                                    <a class="add-to-cart" data-id="@product1.Id"><i class="fas fa-shopping-cart"></i></a>
+                                                    <p class="card-detail">@product1.BrandCategory.Brand.Name</p>
+                                                    @if (product1.Discount == 0)
+                                                    {
+                                                        <span class="new-price"><span>₼</span>@product1.Price</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="old-price"><span>₼</span>@product1.Price</span>
+                                                        <span class="new-price">
+                                                            <span>₼</span>@(product1.Price -
+                                                  (product1.Price * product1.Discount) / 100)
+                                                        </span>
+                                                        <span class="discount">@product1.Discount<span>%</span></span>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Single Product End -->
+                                }
+                            </div>
+                            <!-- Best Deal Product Activation End Here -->
+                        </div>
+                        <!-- #best-deal End Here -->
+                        <div id="new-pro" class="tab-pane fade">
+                            <!-- New Product Activation Start Here -->
+                            <div class="feature-pro-active owl-carousel">
+                                @foreach (var product2 in Model.Products.OrderByDescending(p=>p.CreateDate).Take(8))
+                                {
+                                    <!-- Single Product Start -->
+                                    <div class="single-ponno-product">
+                                        <!-- Product Image Start -->
+                                        <div class="pro-img">
+                                            <div class="card card-title">
+                                                <img src="~/img/@product2.ProductImages.FirstOrDefault()?.ImageUrl" class="card-img-top card-img">
+                                                <div class="card-body">
+                                                    <a href="/ProductDetail/index?producid=@product2.Id">
+                                                        <p class="card-text">@product2.Name</p>
+                                                    </a>
+                                                    <a class="add-to-cart" data-id="@product2.Id"><i class="fas fa-shopping-cart"></i></a>
+                                                    <p class="card-detail">@product2.BrandCategory.Brand.Name</p>
+                                                    @if (product2.Discount == 0)
+                                                    {
+                                                        <span class="new-price"><span>₼</span>@product2.Price</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="old-price"><span>₼</span>@product2.Price</span>
+                                                        <span class="new-price">
+                                                            <span>₼</span>@(product2.Price -
+                                 (product2.Price * product2.Discount) / 100)
+                                                        </span>
+                                                        <span class="discount">@product2.Discount<span>%</span></span>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Product Image End -->
+
+                                    </div>
+                                    <!-- Single Product End -->
+                                }
+                            </div>
+                            <!-- New Product Activation End Here -->
+                        </div>
+                        <!-- #new-pro End Here -->
+                        <div id="featured" class="tab-pane fade">
+                            <!-- Featured Product Activation Start Here -->
+                            <div class="feature-pro-active owl-carousel">
+                                @foreach (var product3 in Model.Products.Where(p=>p.Discount!=0))
+                                {
+                                    <!-- Single Product Start -->
+                                    <div class="single-ponno-product">
+                                        <!-- Product Image Start -->
+                                        <div class="pro-img">
+                                            <div class="card card-title">
+                                                <img src="~/img/@product3.ProductImages.FirstOrDefault()?.ImageUrl" class="card-img-top card-img">
+                                                <div class="card-body">
+                                                    <a href="/ProductDetail/index?producid=@product3.Id">
+                                                        <p class="card-text">@product3.Name</p>
+                                                    </a>
+                                                    <a class="add-to-cart" data-id="@product3.Id"><i class="fas fa-shopping-cart"></i></a>
+                                                    <p class="card-detail">@product3.BrandCategory.Brand.Name</p>
+                                                    @if (product3.Discount == 0)
+                                                    {
+                                                        <span class="new-price"><span>₼</span>@product3.Price</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="old-price"><span>₼</span>@product3.Price</span>
+                                                        <span class="new-price">
+                                                            <span>₼</span>@(product3.Price -
+                                          (product3.Price * product3.Discount) / 100)
+                                                        </span>
+                                                        <span class="discount">@product3.Discount<span>%</span></span>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Product Image End -->
+                                    </div>
+                                    <!-- Single Product End -->
+                                }
+
+
+                            </div>
+                            <!-- Featured Product Activation End Here -->
+                        </div>
+                        <!-- #featured End Here -->
+                    </div>
+                    <!-- Tab Content End -->
+                </div>
+                <!-- main-product-tab-area-->
+            </div>
+        </div>
+        <!-- Featured Product End Here -->
+    </section>
+
+    <section id="product-list" class="pt-5" style="background-image: url('img/background/back11.jpg'); background-repeat: no-repeat;
+        background-position: center center; background-size: cover;">
+        <div class="lapto-computers pb-80">
+            <div class="container">
+                <div class="electronics-list-area d-flex flex-wrap align-items-center justify-content-between mb-40">
+                    <h5 style="font-weight:700;font-size:35px;" class="e-header mb-sm-15">Məhsullar</h5>
+                    <div class="e-tabs-list">
+                        <!-- Nav tabs -->
+                        <ul class="nav tabs-area categorie-tabs-area" role="tablist">
+                            @foreach (var productsOfCategory in Model.ProductsOfCategories)
+                            {
+                                if (productsOfCategory.Value.Count() != 0)
+                                {
+                                    <li class="nav-item">
+                                        <a style="font-weight:700;font-size:20px;" class="@productsOfCategory.Key.ActiveField" data-toggle="tab" href="#thumb-@productsOfCategory.Key.Id">@productsOfCategory.Key.Name</a>
+                                    </li>
+                                }
+                            }
+
+
+                        </ul>
+                        <!-- Tab Contetn Start -->
+                    </div>
+                </div>
+                <!-- Categorie Tab Contetn Start Here -->
+                <div class="tab-content pro-style-changer">
+                    @foreach (var productsOfCategory in Model.ProductsOfCategories)
+                    {
+                            <!-- Computer Product Start Here -->
+                            <div id="thumb-@productsOfCategory.Key.Id" class="tab-pane fade show @productsOfCategory.Key.ActiveField">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-6 mb-lg-40">
+                                        <!-- Tripple Product Start Here-->
+                                        <div class="tripple-pro">
+                                            @foreach (var product in productsOfCategory.Value.Take(3))
+                                            {
+                                                <!-- Single Product Start -->
+                                            <div class="single-ponno-product">
+                                                <!-- Product Image Start -->
+                                                <div class="pro-img" style="height:166px;">
+                                                    <a href="#">
+                                                        <img  class="primary-img" src="~/img/@product.ProductImages.Where(i=>i.ProductId==i.Product.Id).FirstOrDefault()?.ImageUrl"
+                                                             alt="single-product">
+                                                    </a>
+                                                </div>
+
+                                                <style>
+                                                    .primary-img{
+                                                    height:100% !important;
+                                                    }
+                                                </style>
+                                                <!-- Product Image End -->
+                                                <!-- Product Content Start -->
+                                                <div class="pro-content">
+                                                    <div class="pro-info">
+                                                        <h4 style="font-size:13px;"><a href="#">@product.Name</a></h4>
+                                                        <h3 style="font-size:11px;padding-top:10px;"><a href="#">@product.BrandCategory.Brand.Name</a></h3>
+                                                        @if (product.Discount == 0)
+                                                        {
+                                                            <div class="price" style="padding-top:20px;">
+                                                                <span class="new-price"><span>₼</span>@product.Price</span>
+                                                            </div>
+                                                            <div class="product-rating">
+                                                                <a href="/ProductDetail/index?producid=@product.Id" class="more-data">Məlumat</a>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                    <div class="price" style="padding-top:20px;">
+                                                        <span class="old-price"><span>₼</span>@product.Price</span>
+                                                        <span class="new-price"><span>₼</span>@(product.Price - (product.Price * product.Discount) / 100)</span>
+                                                    </div>
+                                                               
+                                                                <p class="discount" style="padding-left:5px;color:green;font-weight:500"><span>@product.Discount</span>%</p>
+                                                                <div class="product-rating">
+                                                                    <a href="/ProductDetail/index?producid=@product.Id" class="more-data">Məlumat</a>
+                                                                </div>
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                <!-- Product Content End -->
+                                            </div>
+                                                <!-- Single Product End -->
+                                            }
+
+
+                                        </div>
+                                        <!-- Tripple Product Start Here-->
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 mb-lg-40">
+                                        <!-- Tripple Product Start Here-->
+                                        <div class="tripple-pro">
+                                            @foreach (var product in productsOfCategory.Value.Skip(3).Take(3))
+                                            {
+                                                <!-- Single Product Start -->
+                                                <div class="single-ponno-product">
+                                                    <!-- Product Image Start -->
+                                                    <div class="pro-img" style="height:166px;">
+                                                        <a href="product-details.html">
+                                                            <img class="primary-img" src="~/img/@product.ProductImages.FirstOrDefault()?.ImageUrl"
+                                                                 alt="single-product">
+                                                        </a>
+                                                    </div>
+                                                    <!-- Product Image End -->
+                                                    <!-- Product Content Start -->
+                                                    <div class="pro-content">
+                                                        <div class="pro-info">
+                                                            <h4 style="font-size:13px;"><a href="#">@product.Name</a></h4>
+                                                            <h3 style="font-size:11px;padding-top:10px;"><a href="#">@product.BrandCategory.Brand.Name</a></h3>
+                                                            @if (product.Discount == 0)
+                                                            {
+                                                                <div class="price" style="padding-top:20px;">
+                                                                    <span class="new-price"><span>₼</span>@product.Price</span>
+                                                                </div>
+                                                                <div class="product-rating">
+                                                                    <a href="/ProductDetail/index?producid=@product.Id" class="more-data">Məlumat</a>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="price" style="padding-top:20px;">
+                                                                    <span class="old-price"><span>₼</span>@product.Price</span>
+                                                                    <span class="new-price"><span>₼</span>@(product.Price - (product.Price * product.Discount) / 100)</span>
+                                                                </div>
+                                                                <p class="discount" style="padding-left:5px;color:green;font-weight:500"><span>@product.Discount</span>%</p>
+                                                                <div class="product-rating">
+                                                                    <a href="/ProductDetail/index?producid=@product.Id" class="more-data">Məlumat</a>
+                                                                </div>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- Product Content End -->
+                                                </div>
+                                                <!-- Single Product End -->
+                                            }
+
+
+                                        </div>
+                                        <!-- Tripple Product Start Here-->
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6">
+                                        <!-- Tripple Product Start Here-->
+                                        <div class="tripple-pro">
+                                            @foreach (var product in productsOfCategory.Value.Skip(6).Take(3))
+                                            {
+                                                <!-- Single Product Start -->
+                                            <div class="single-ponno-product">
+                                                <!-- Product Image Start -->
+                                                <div class="pro-img" style="height:166px;">
+                                                    <a href="product-details.html">
+                                                        <img class="primary-img" src="~/img/@product.ProductImages.FirstOrDefault()?.ImageUrl"
+                                                             alt="single-product">
+                                                    </a>
+                                                </div>
+                                                <!-- Product Image End -->
+                                                <!-- Product Content Start -->
+                                                <div class="pro-content">
+                                                    <div class="pro-info">
+                                                        <h4 style="font-size:13px;"><a href="#">@product.Name</a></h4>
+                                                        <h3 style="font-size:11px;padding-top:10px;"><a href="#">@product.BrandCategory.Brand.Name</a></h3>
+                                                        @if (product.Discount == 0)
+                                                        {
+                                                            <div class="price" style="padding-top:20px;">
+                                                                <span class="new-price"><span>₼</span>@product.Price</span>
+                                                            </div>
+                                                            <div class="product-rating">
+                                                                <a href="/ProductDetail/index?producid=@product.Id" class="more-data">Məlumat</a>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        { <div class="price" style="padding-top:20px;">
+    <span class="old-price"><span>₼</span>@product.Price</span>
+    <span class="new-price"><span>₼</span>@(product.Price - (product.Price * product.Discount) / 100)</span>
+
+
+</div>
+                                                            <p class="discount" style="padding-left:5px;color:green;font-weight:500"><span>@product.Discount</span>%</p>
+                                                            <div class="product-rating">
+                                                                <a href="/ProductDetail/index?producid=@product.Id" class="more-data">Məlumat</a>
+                                                            </div>
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                                <!-- Product Content End -->
+                                            </div>
+                                                <!-- Single Product End -->
+                                            }
+
+
+                                        </div>
+                                        <!-- Tripple Product Start Here-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Computer Product End Here -->
+
+                    }
+
+
+                </div>
+                <!-- Categorie Tab Contetn End Here -->
+            </div>
+        </div>
+    </section>
+
+    <!--Brand Area Start-->
+    <div class="brand-area pt-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="brand-active owl-carousel">
+                        @foreach (var brand in Model.BrandCarusels)
+                        {
+                            <!--Single Brand Start-->
+                            <div class="single-brand">
+                                <a href="#"><img src="~/img/@brand.Image" alt=""></a>
+                            </div>
+                            <!--Single Brand End-->
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Brand Area End-->
+
+
+</main>
+<!-- Main end -->

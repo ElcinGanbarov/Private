@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Carmarka";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h3 class="font-family avs">
+    Car Marka
+    <button type="button" class="btn btn-primary ml-sty" style="margin-left:30px;" data-toggle="modal" data-target="#examplemodal" data-whatever="mdo"><i class="fa fa-plus-square" style="padding-right:10px;"></i> Create New</button>
+</h3>
+<div class="modal fade" id="examplemodal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new Marka form</h5>
+                <button type="button" class="close" data-dissmiss="modal" aria-label="close">
+                    <span aria-hidden="true" &times;></span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="row mm">
+                                <div class="col-md-5"><label for="recipient-name" class="col-form-label" style="float:left"> Car Marka</label></div>
+                                <div class="col-md-7"><input type="text" class="form-control" id="carmarka" style="float:left;" /></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="AddButton">Add Marka</button>
+            </div>
+        </div>
+    </div>
+<div id="cartablediv">
+    @{ 
+        List<SWCars.Models.DataModels.CarMarka> markaList = (List<SWCars.Models.DataModels.CarMarka>)ViewBag.Carlist;
+
+        if (markaList ==null||markaList.Count==0)
+        {
+            <p class="font-family" style="font-size:15px;">Hecbir marka Tapilmadi</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead class="thead-light">
+                    <tr class="font-family">
+                        <th> Marka</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var marka in markaList)
+                    {
+                        <tr id="@marka.Id" class="font-family" style="background-color:lightgreen;">
+                            <td class='rowCell'>@marka.Marka</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+     }
+
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+    $(document).ready(function myfunction() {
+
+
+        $("button#AddButton").click(function () {
+            var cmarka = $("input#carmarka ").val();
+
+            if (cmarka.length == 0) {
+                alert('Marka daxil edilmemisdir');
+            }
+            $("input#carmarka").val('');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("addCarmarka","CarMarka")',
+                dataType: 'json',
+                data: { marka: cmarka },
+                success: function (f) {
+                    if (f.Status == true) {
+                        var rowsCount = $("tbody tr").length;
+                        var table, rows;
+                        if (rowsCount == 0) {
+                            $("p").remove();
+                            table = "<table class='table'><thead class='thead-light'><tr class='font-family'><th>Marka</th></tr></thead><tbody><tr id=" + f.Message + " class='font-family'><td class='rowCell'>" + cmarka + "</td></tr>";
+                            $("div#cartablediv").html(table);
+
+                        }
+                        else {
+                            rows = $("tbody").html() + "<tr id=" + f.Message + " class='font-family'><td class='rowCell'>" + cmarka + "</td></tr>";
+                            $("tbody").html(rows);
+                        }
+                    }
+                    else if (data.Status == false) {
+                        alert(data.Message);
+                    }
+
+                },
+                error: function () {
+
+                }
+            });
+            $('.modal').modal('hide');
+
+        });
+    })
+</script>
+

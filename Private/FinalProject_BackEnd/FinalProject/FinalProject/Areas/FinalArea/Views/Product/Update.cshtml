@@ -1,0 +1,81 @@
+﻿
+@model ProductModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<!-- Content Body Start -->
+<div class="content-body">
+
+    <div class="add-edit-product-wrap col-12">
+
+        <div class="add-edit-product-form">
+            <form method="post" enctype="multipart/form-data">
+
+                <h4 class="title">About Product</h4>
+
+                <div class="row">
+                    <div class="col-lg-6 col-12 mb-30">
+                        <input class="form-control" asp-for="@Model.Product.Name" placeholder="Product Name">
+                        <span asp-validation-for="@Model.Product.Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-6 col-12 mb-30">
+                        <input class="form-control" asp-for="@Model.Product.Price" type="number" min="0" max="100000" placeholder="Product Price">
+                        <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-6 col-12 mb-30">
+                        <input class="form-control" asp-for="@Model.Product.Count" min="0" max="100" placeholder="Product Count">
+                        <span asp-validation-for="@Model.Product.Count" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-6 col-12 mb-30">
+                        <input class="form-control" asp-for="@Model.Product.Discount" min="0" max="100" placeholder="Product Discount">
+                        <span asp-validation-for="@Model.Product.Discount" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 mb-30">
+                        <textarea class="form-control" asp-for="@Model.Product.Details" placeholder="Product Details*"></textarea>
+                        <span asp-validation-for="@Model.Product.Details" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-6 col-12 mb-30">
+                        <span class="text-info">Category:</span>
+                        <p>@Model.Product.BrandCategory.Brand.Name</p>
+                    </div>
+                    <div class="col-lg-6 col-12 mb-30">
+                        <span class="text-info">Brand:</span>
+                        <p>@Model.Product.BrandCategory.Categorie.Name</p>
+                    </div>
+
+
+                </div>
+
+                <h4 class="title">Product Gallery</h4>
+
+                <div class="product-upload-gallery row flex-wrap">
+                    <div class="col-12 mb-30">
+                        @foreach (var img in Model.ProductImages)
+                        {
+                            <div class="col-lg-6 col-12 mb-30 mt-3">
+                                <img src="~/img/@img.ImageUrl" style="width:100px" />
+                            </div>
+                            <input asp-for="@img.UpdatePhoto" class="file-pond" type="file" accept="image\*" multiple name="Photo">
+                            <span asp-validation-for="@img.UpdatePhoto" class="text-danger"></span>
+                        }
+
+                    </div>
+                    <div class="ml-15">
+                        <input type="submit" class="btn btn-outline-primary" value="Update" />
+                    </div>
+                </div>
+
+
+
+            </form>
+            <div class="row mt-15">
+                <div class="col-12">
+                    <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- Add or Edit Product End -->
+
+</div><!-- Content Body End -->

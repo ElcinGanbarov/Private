@@ -1,0 +1,75 @@
+﻿
+@model IEnumerable<TeamEmployee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!--Responsive Table Start-->
+<div class="content-body">
+    <div class="row">
+        <div class="col-12 mb-30">
+            <div class="box">
+                <div class="box-head">
+                    <a asp-action="Create" class="button button-outline button-primary"><span>Create</span></a>
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Description</th>
+                                    <th>Position</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int count = 1;
+                                }
+                                @foreach (var team in Model)
+                                {
+                                <tr>
+                                    <th>@count</th>
+                                    <td>
+                                        <img src="~/img/@team.Image" style="width:150px" />
+                                    </td>
+                                    <td>@team.Name</td>
+                                    <td>@team.Surname</td>
+                                    <td>
+                                        @if (team.Description.Length > 50)
+                                        {
+                                            @Html.Raw(team.Description.Substring(0, 30) + "...")
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(team.Description)
+                                        }
+                                    </td>
+                                    <td>@team.Position</td>
+                                    <td>
+
+                                        <a asp-action="Detail" asp-route-id="@team.Id" class="button button-outline button-success"><span class="fa fa-info"></span></a>
+                                        <a asp-action="Update" asp-route-id="@team.Id" class="button button-outline button-warning"><span class="fa fa-edit"></span></a>
+                                        <a asp-action="Delete" asp-route-id="@team.Id" class="button button-outline button-danger"><span class="fa fa-trash"></span></a>
+
+
+                                    </td>
+
+                                </tr>
+                                    count++;
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Responsive Table End-->

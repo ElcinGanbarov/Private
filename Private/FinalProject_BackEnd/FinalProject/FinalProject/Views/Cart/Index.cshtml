@@ -1,0 +1,149 @@
+﻿@model IEnumerable<BasketProduct>
+@{
+    ViewData["Title"] = "Index";
+
+    
+}
+@{ 
+     
+}
+
+
+
+
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="index.html">Əsas səhifə</a>
+            </li>
+            <li class="breadcrumb-item active">Səbət</li>
+        </ol>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+
+@if (Model.ToList().Count == 0)
+{
+    <div class="alert alert-warning">
+        Sizin səbətiniz boşdur. Zəhmət olmasa səbətə istədiyiniz məhsulu əlavə edin.
+    </div>
+}
+else
+{
+   
+
+    <!-- Cart Main Area Start -->
+    <main id="main-cart">
+        <div class="cart-main-area ptb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <!-- Form Start -->
+                        <form action="#">
+                            <!-- Table Content Start -->
+                            <div class="table-content table-responsive mb-45">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-thumbnail">Şəkil</th>
+                                            <th class="product-name">Məhsul</th>
+                                            <th class="product-price">Qiymət</th>
+                                            <th class="product-quantity">Say</th>
+                                            <th class="product-subtotal">Cəm</th>
+                                            <th class="product-remove">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var product in Model)
+                                        {
+                                          
+
+
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img src="~/img/@product.Image" alt="cart-image" /></a>
+                                            </td>
+                                            <td class="product-name">
+                                                <a href="product-details.html">@product.Name</a>
+                                            </td>
+                                            @if (product.Discount == 0)
+                                            {
+                                                <td class="product-price"><span class="amount">₼@product.Price</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td class="product-price"><span class="amount">₼@(product.Price - (product.Price * product.Discount) / 100)</span></td>
+                                            }
+
+                                            <td class="product-quantity">
+                                                <span class="quantity">@product.Quantity</span>
+                                            </td>
+
+                                            @if (product.Discount == 0)
+                                            {
+                                                <td class="product-subtotal"><span class="amount">₼@(product.Price*product.Quantity)</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td class="product-subtotal"><span class="amount">₼@((product.Price - (product.Price * product.Discount) / 100)*product.Quantity)</span></td>
+                                            }
+                                          
+                                            <td class="product-remove">
+                                                <a class="remove-product-cart"  href="/Cart/Remove/@product.Id">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Table Content Start -->
+                            <div class="row">
+                                <!-- Cart Button Start -->
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="buttons-cart">
+                                        <input type="submit" value="Update Cart" />
+                                        <a href="#">Continue Shopping</a>
+                                    </div>
+                                </div>
+                                <!-- Cart Button Start -->
+                                <!-- Cart Totals Start -->
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="cart_totals float-md-right text-md-right">
+                                        @*<h2>Cart Totals</h2>*@
+                                        <br />
+                                        <table class="float-md-right">
+                                            @*<tbody>
+                                                <tr class="order-total">
+                                                    <th>Total</th>
+                                                    <td>
+                                                    
+                                                        <strong><span class="amount">₼0</span></strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>*@
+                                        </table>
+                                        <div class="wc-proceed-to-checkout">
+                                            <a href="#">Proceed to Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Cart Totals End -->
+                            </div>
+                            <!-- Row End -->
+                        </form>
+                        <!-- Form End -->
+                    </div>
+                </div>
+                <!-- Row End -->
+            </div>
+        </div>
+    </main>
+    <!-- Cart Main Area End -->
+}
+

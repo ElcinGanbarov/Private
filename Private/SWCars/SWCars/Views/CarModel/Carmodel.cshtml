@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Carmodel";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h3 class="font-family avs">
+    Car Model
+    <button type="button" class="btn btn-primary ml-sty" style="margin-left:30px;" data-toggle="modal" data-target="#examplemodal" data-whatever="mdo"><i class="fa fa-plus-square" style="padding-right:10px;"></i> Create New</button>
+</h3>
+<div class="modal fade" id="examplemodal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new model form ..</h5>
+                <button type="button" class="close" data-dissmiss="modal" aria-label="close">
+                    <span aria-hidden="true" &times;></span>
+                </button>
+                <div class="modal-body">
+                    <form >
+                        <div class="form-group">
+                            <div class="row-mm">
+                                <div class="col-md-5"> <label for="recipient-name" class="col-form-label" style="float:left">Car Model</label></div>
+                                <div class="col-md-7"> <input type="text" class="form-control" id="carmodel" style="float:left;" /></div>
+                            </div>
+                            <div class="row-mm">
+                                <div class="col-md-5"><label class="col-form-label" style="float:left;">Car Marka</label></div>
+                                <div class="col-md-7">
+                                    <select class="form-control font-family" id="carmarkaid">
+                                        @{
+                                            List<SWCars.Models.DataModels.CarMarka> markalist = (List<SWCars.Models.DataModels.CarMarka>)ViewBag.Carmarkalist;
+
+                                            <option id="mt" class="marka"></option>
+
+                                            foreach (var marka in markalist)
+                                            {
+                                                <option id="@marka.Id" class="structure">@marka.Marka</option>
+                                            }
+                                         }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="AddButton"> Add Model</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="createtablediv">
+    @{ 
+        List<SWCars.Models.DataModels.CarModel> modellist = (List<SWCars.Models.DataModels.CarModel>)ViewBag.CarmodelList;
+
+        if (modellist==null||modellist.Count==0)
+        {
+            <p class="font-family" style="font-size:15px;">Hec bir model tapilmadi</p>;
+        }
+        else
+        {
+            <table class="table">
+                <thead class="thead-light">
+                    <tr class="font-family">
+                        <th>Marka</th>
+                        <th> Model</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in modellist)
+                    {
+                        <tr id="@item.Id" class="font-family" style="background-color:lightgray;">
+                            <td class="rowCell">@item.MarkaId</td>
+                            <td class="rowCell">@item.Model</td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    }
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function myfunction() {
+
+        $('button#AddButton').click(function () {
+
+            var model = $('input#carmodel').val();
+            var markaname = $('select#carmarkaid :selected').attr('id');
+            if (model.length == 0)
+            {
+                alert('Model daxil edilmemisdir');
+            }
+            if (markaname == 'mt') {
+                alert('Marka adi secilmemisdir');
+
+            }
+            $('input#carmodel').val('');
+            $.ajax({
+                type: 'POST',
+                url:'@Url.Action("addmodel", "CarModel")',
+                dataType: 'json',
+                data: { carmodel: model, carmarkaid :markaname},
+                success: function (data) {
+                    if (data.Status == true) {
+                        var rowsCount = $("tbody tr").length;
+                        var table, rows;
+                        if (rowsCount == 0) {
+                            $("p").remove();
+                            table = "<table class='table'><thead class='thead-light'><tr class='font-family'><th>Marka</th><th>Model</th></tr></thead><tbody><tr id=" + data.Message + " class='font-family'><td class='rowCell'>" + markaname + "</td><td class='rowCell'>" +model+ "</td></tr>";
+                            $("div#cartablediv").html(table);
+                        } else {
+                            rows = $("tbody").html() + "<tr id=" + data.Message + " class='font-family'><td class='rowCell'>" + markaname + "</td><td class='rowCell'>" + model + "</td></tr>";
+                            $("tbody").html(rows);
+                        }
+                      @* $('select#carmarkaid').val(''); *@
+
+                    }
+                    else if (data.Status == false) {
+                        alert(data.Message);
+
+                    }
+
+                },
+                error: function () {
+
+                }
+            });
+            $('.modal').modal('hide');
+
+        });
+
+    });
+</script>
+

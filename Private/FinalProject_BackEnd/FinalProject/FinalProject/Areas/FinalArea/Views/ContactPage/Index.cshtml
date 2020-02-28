@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Contact>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!--Responsive Table Start-->
+<div class="content-body">
+    <div class="row">
+        <div class="col-12 mb-30">
+            <div class="box">
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Description</th>
+                                    <th>Mobile phone</th>
+                                    <th>Home Phone</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int count = 1;
+                                }
+                                @foreach (var contact in Model)
+                                {
+                                <tr>
+                                    <th>@count</th>
+                                    <td>
+                                        <img src="~/img/@contact.BackImage" style="width:150px" />
+                                    </td>
+                                    <td>
+                                        @if (contact.Description.Length > 50)
+                                        {
+                                            @Html.Raw(contact.Description.Substring(0, 30) + "...")
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(contact.Description)
+                                        }
+                                    </td>
+                                    <td>@contact.MobilePhone</td>
+                                    <td> @contact.HomePhone</td>
+                                    <td> @contact.Email</td>
+                                    <td>
+
+                                        <a asp-action="Detail" asp-route-id="@contact.Id" class="button button-outline button-success"><span class="fa fa-info"></span></a>
+                                        <a asp-action="Update" asp-route-id="@contact.Id" class="button button-outline button-warning"><span class="fa fa-edit"></span></a>
+
+
+                                    </td>
+
+                                </tr>
+                                    count++;
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Responsive Table End-->

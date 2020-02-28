@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Master";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h3 class="font-family avs">
+   Master
+    <button type="button" class="btn btn-primary ml-sty" style="margin-left:30px;" data-toggle="modal" data-target="#examplemodal" data-whatever="mdo"><i class="fa fa-plus-square" style="padding-right:10px;"></i> Create New</button>
+
+</h3>
+
+<div class="modal fade" id="examplemodal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new Master form</h5>
+                <button type="button" class="close" data-dissmiss="modal" aria-label="close">
+                    <span aria-hidden="true" &times;></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row mm">
+                            <div class="col-md-5"><label for="recipient-name" class="col-form-label" style="float:left">Master</label></div>
+                            <div class="col-md-7"><input type="text" class="form-control" id="masterid" style="float:left;" /></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="AddButton">Add Master</button>
+        </div>
+    </div>
+</div>
+<div id="cartablediv">
+    @{
+        List<SWCars.Models.DataModels.Master> masterlist = (List<SWCars.Models.DataModels.Master>)ViewBag.Masterlist;
+
+        if (masterlist == null || masterlist.Count == 0)
+        {
+            <p class="font-family" style="font-size:15px;">Hecbir Master Tapilmadi</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead class="thead-light">
+                    <tr class="font-family">
+                        <th> Master</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var master in masterlist)
+                    {
+                        <tr id="@master.Id" class="font-family" style="background-color:lightgreen;">
+                            <td class='rowCell'>@master.MasterName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+    $(document).ready(function myfunction() {
+
+
+        $("button#AddButton").click(function () {
+            var master = $("input#masterid ").val();
+
+            if (master.length == 0) {
+                alert('Usta daxil edilmemisdir');
+            }
+            $("input#masterid").val('');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("addmaster","Master")',
+                dataType: 'json',
+                data: { mastername: master },
+                success: function (f) {
+                    if (f.Status == true) {
+                        var rowsCount = $("tbody tr").length;
+                        var table, rows;
+                        if (rowsCount == 0) {
+                            $("p").remove();
+                            table = "<table class='table'><thead class='thead-light'><tr class='font-family'><th>Master</th></tr></thead><tbody><tr id=" + f.Message + " class='font-family'><td class='rowCell'>" + master + "</td></tr>";
+                            $("div#cartablediv").html(table);
+
+                        }
+                        else {
+                            rows = $("tbody").html() + "<tr id=" + f.Message + " class='font-family'><td class='rowCell'>" + master + "</td></tr>";
+                            $("tbody").html(rows);
+
+                        }
+                    }
+                    else if (data.Status == false) {
+                        alert(data.Message);
+                    }
+
+                },
+                error: function () {
+
+                }
+            });
+            $('.modal').modal('hide');
+
+        });
+    });
+
+</script>

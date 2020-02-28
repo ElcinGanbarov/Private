@@ -1,0 +1,13 @@
+﻿
+@model IEnumerable<PartnerViewModel>
+
+<div class="row mt-5 align-items-center">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-@ViewBag.colno">
+            <a href="@item.Url" target="_blank">
+                <img src="@item.Photo" width="100%" />
+            </a>
+        </div>
+    }
+</div>

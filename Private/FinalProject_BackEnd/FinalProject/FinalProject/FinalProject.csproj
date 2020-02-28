@@ -1,0 +1,141 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191010121805_CreateProductTable.cs" />
+    <Compile Remove="Migrations\20191010121805_CreateProductTable.Designer.cs" />
+    <Compile Remove="Migrations\20191010121934_CreateProductTable.cs" />
+    <Compile Remove="Migrations\20191010121934_CreateProductTable.Designer.cs" />
+    <Compile Remove="Migrations\20191012102719_CreateBrandTable.cs" />
+    <Compile Remove="Migrations\20191012102719_CreateBrandTable.Designer.cs" />
+    <Compile Remove="Migrations\20191012103731_CreateReferenceProductBrandCategoryTables.cs" />
+    <Compile Remove="Migrations\20191012103731_CreateReferenceProductBrandCategoryTables.Designer.cs" />
+    <Compile Remove="Migrations\20191012110723_CreateReferencesProductBrandCategoryTables.cs" />
+    <Compile Remove="Migrations\20191012110723_CreateReferencesProductBrandCategoryTables.Designer.cs" />
+    <Compile Remove="Migrations\20191012111052_CreateReferencesProductBrandCategoryTables.cs" />
+    <Compile Remove="Migrations\20191012111052_CreateReferencesProductBrandCategoryTables.Designer.cs" />
+    <Compile Remove="Migrations\20191012112348_CreateReferencesProductBrandCategoryTables.cs" />
+    <Compile Remove="Migrations\20191012112348_CreateReferencesProductBrandCategoryTables.Designer.cs" />
+    <Compile Remove="Migrations\20191014171117_CreateTeamEmployeeTable.cs" />
+    <Compile Remove="Migrations\20191014171117_CreateTeamEmployeeTable.Designer.cs" />
+    <Compile Remove="Migrations\20191015163037_AddReferencesColumnsInOrderProductTables.cs" />
+    <Compile Remove="Migrations\20191015163037_AddReferencesColumnsInOrderProductTables.Designer.cs" />
+    <Compile Remove="Migrations\20191015201029_AddReferencesOrderAppUserTables.cs" />
+    <Compile Remove="Migrations\20191015201029_AddReferencesOrderAppUserTables.Designer.cs" />
+    <Compile Remove="Migrations\20191015201858_AddReferencesOrderAppUserTables.cs" />
+    <Compile Remove="Migrations\20191015201858_AddReferencesOrderAppUserTables.Designer.cs" />
+    <Compile Remove="Migrations\20191015202151_AddReferencesOrderAppUserTables.cs" />
+    <Compile Remove="Migrations\20191015202151_AddReferencesOrderAppUserTables.Designer.cs" />
+    <Compile Remove="Migrations\20191016104044_CreateBioHeaderTable.cs" />
+    <Compile Remove="Migrations\20191016104044_CreateBioHeaderTable.Designer.cs" />
+    <Compile Remove="Migrations\20191020100424_CreateCommentTableWithReferencesProductAndUserTable.cs" />
+    <Compile Remove="Migrations\20191020100424_CreateCommentTableWithReferencesProductAndUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20191020202421_CreateCommentToProductTable.cs" />
+    <Compile Remove="Migrations\20191020202421_CreateCommentToProductTable.Designer.cs" />
+    <Compile Remove="Migrations\20191023090248_AddConstraintsToContactTable.cs" />
+    <Compile Remove="Migrations\20191023090248_AddConstraintsToContactTable.Designer.cs" />
+    <Compile Remove="Migrations\20191023090516_AddConstraintsToContactTable.cs" />
+    <Compile Remove="Migrations\20191023090516_AddConstraintsToContactTable.Designer.cs" />
+    <Compile Remove="Migrations\20191101102603_Change_StringLenght_MaxLenghtInProduct.cs" />
+    <Compile Remove="Migrations\20191101102603_Change_StringLenght_MaxLenghtInProduct.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="7.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\admin\assets\fonts\cryptocurrency-icons.svg" />
+    <None Include="wwwroot\admin\assets\fonts\cryptocurrency-icons.woff2" />
+    <None Include="wwwroot\admin\assets\fonts\dropify.svg" />
+    <None Include="wwwroot\admin\assets\fonts\fontawesome-webfont3e6e.svg" />
+    <None Include="wwwroot\admin\assets\fonts\fontawesome-webfont3e6e.woff2" />
+    <None Include="wwwroot\admin\assets\fonts\Material-Design-Iconic-Fontd1f1.woff2" />
+    <None Include="wwwroot\admin\assets\fonts\themify9f24.svg" />
+    <None Include="wwwroot\admin\assets\js\main.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\bootstrap-select\bootstrap-select.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\bootstrap-select\bootstrapSelect.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\chartjs\Chart.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\chartjs\chartjs.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\clipboard\clipboard.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\clipboard\clipboard.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\datatables\datatables.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\datatables\datatables.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\daterangepicker\daterangepicker.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\daterangepicker\daterangepicker.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\dropify\dropify.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\dropify\dropify.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\echarts\echarts.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\echarts\echarts.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\filepond\filepond-plugin-image-exif-orientation.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\filepond\filepond-plugin-image-preview.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\filepond\filepond.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\filepond\filepond.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\footable\footable.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\footable\footable.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\fullcalendar\fullcalendar.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\fullcalendar\fullcalendar.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\google-chart\google-chart.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\google-chart\google-chart.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\google-map\googlemap.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\inputmask\bootstrap-inputmask.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\ion-rangeslider\ion.rangeSlider.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\ion-rangeslider\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\jsgrid\jsgrid-db.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\jsgrid\jsgrid.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\jsgrid\jsgrid.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\moment\moment.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\morris\morris.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\morris\morris.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\nice-select\jquery.nice-select.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\nice-select\niceSelect.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\perfect-scrollbar.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\plyr\plyr.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\plyr\plyr.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\quill\quill.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\quill\quill.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\raphael\raphael.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\raty\jquery.raty.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\raty\raty.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\select2\select2.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\select2\select2.full.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\smartWizard\jquery.smartWizard.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\smartWizard\smartWizard.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\sortable\sortable.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\sortable\sortable.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\sparkline\jquery.sparkline.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\sparkline\sparkline.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\summernote\summernote-bs4.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\summernote\summernote.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\sweetalert\sweetalert.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\sweetalert\sweetalert.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\tippy4.min.js.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\toastr\toastr.active.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\toastr\toastr.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\jquery.vmap.min.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\maps\continents\jquery.vmap.africa.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\maps\continents\jquery.vmap.asia.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\maps\continents\jquery.vmap.australia.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\maps\continents\jquery.vmap.europe.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\maps\jquery.vmap.usa.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\maps\jquery.vmap.world.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\maps\samples\jquery.vmap.sampledata.js" />
+    <None Include="wwwroot\admin\assets\js\plugins\vmap\vmap.active.js" />
+    <None Include="wwwroot\admin\assets\js\vendor\bootstrap.min.js" />
+    <None Include="wwwroot\admin\assets\js\vendor\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\admin\assets\js\vendor\modernizr-3.6.0.min.js" />
+    <None Include="wwwroot\admin\assets\js\vendor\popper.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\team\" />
+  </ItemGroup>
+
+</Project>

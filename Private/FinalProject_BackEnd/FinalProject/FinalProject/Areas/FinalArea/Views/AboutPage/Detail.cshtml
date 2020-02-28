@@ -1,0 +1,24 @@
+﻿
+@model About
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="content-body">
+    <div class="row">
+        <div class="col-12">
+            <span class="text-info">Description</span>
+            <p>@Html.Raw(Model.Description)</p>
+            <img src="~/img/@Model.Image" style="width:300px" />
+            <div class="row mt-15">
+                <div class="col-12">
+                    <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

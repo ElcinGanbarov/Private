@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "Repair";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h3 class="font-family avs">
+    Repair
+    <button type="button" class="btn btn-primary ml-sty" style="margin-left:30px;" data-toggle="modal" data-target="#examplemodal" data-whatever="mdo"><i class="fa fa-plus-square" style="padding-right:10px;"></i> Create New</button>
+</h3>
+<div class="modal fade" id="examplemodal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new Repair form</h5>
+                <button type="button" class="close" data-dissmiss="modal" aria-label="close">
+                    <span aria-hidden="true" &times;></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row mm">
+                            <div class="col-md-5"><label for="recipient-name" class="col-form-label" style="float:left">Bancode</label></div>
+                            <div class="col-md-7"><input type="text" class="form-control" id="bancode" style="float:left;" /></div>
+                        </div>
+                        <div class="row-mm">
+                            <div class="col-md-5"><label class="col-form-label" style="float:left;">Detal</label></div>
+                            <div class="col-md-7">
+                                <select class="form-control font-family" id="detalid">
+                                    @{
+                                        List<SWCars.Models.DataModels.SparePart> detaillist = (List<SWCars.Models.DataModels.SparePart>)ViewBag.Detaillist;
+
+                                        <option id="dt" class="detal"></option>
+
+                                        foreach (var mydetal in detaillist)
+                                        {
+                                            <option id="@mydetal.Id" class="structure">@mydetal.PartName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row-mm">
+                            <div class="col-md-5"><label class="col-form-label" style="float:left;">Master</label></div>
+                            <div class="col-md-7">
+                                <select class="form-control font-family" id="masterid">
+                                    @{
+                                        List<SWCars.Models.DataModels.Master> masterlist = (List<SWCars.Models.DataModels.Master>)ViewBag.Masterlist;
+
+                                        <option id="mt" class="master"></option>
+
+                                        foreach (var mymaster in masterlist)
+                                        {
+                                            <option id="@mymaster.Id" class="structure">@mymaster.MasterName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mm">
+                            <div class="col-md-5"><label for="recipient-name" class="col-form-label" style="float:left">StartDate</label></div>
+                            <div class="col-md-7"><input type="date" class="form-control" id="startdate" style="float:left;" /></div>
+                        </div>
+                        <div class="row mm">
+                            <div class="col-md-5"><label for="recipient-name" class="col-form-label" style="float:left">EndDate</label></div>
+                            <div class="col-md-7"><input type="date" class="form-control" id="enddate" style="float:left;" /></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="AddButton">Add Repair</button>
+        </div>
+    </div>
+</div>
+
+<div id="tablediv">
+    @{
+        List<SWCars.Models.ViewModels.RepairViewModel> mylist =(List<SWCars.Models.ViewModels.RepairViewModel>)ViewBag.Repairlist;
+
+        if (mylist == null || mylist.Count == 0)
+        {
+            <p class="font-family" style="font-size:15px;">Hec bir Temir tapilmadi</p>;
+        }
+        else
+        {
+            <table class="table">
+                <thead class="thead-light">
+                    <tr class="font-family">
+                        <th> Car</th>
+                        <th>Detail</th>
+                        <th>Master</th>
+                        <th>StartDate</th>
+                        <th>EndDate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in mylist)
+                    {
+                        <tr id="@item.Id" class="font-family" style="background-color:lightgray;">
+                            <td class="rowCell">@item.Bancode</td>
+                            <td class="rowCell">@item.Detail</td>
+                            <td class="rowCell">@item.Master</td>
+                            <td class="rowCell">@item.StartDate</td>
+                            <td class="rowCell">@item.EndDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    }
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+
+    $('button#AddButton').click(function () {
+
+        var carid = $('input#bancode').val();
+
+        var detal = $('select#detalid :selected').attr('id');
+        var master = $('select#masterid :selected').attr('id');
+        var startDate = $('input#startDate').val();
+        var endDate = $('input#endDate').val();
+
+        if (carid.length==0) {
+            alert('Bancode field is empty !');
+            return;
+        }
+
+        if(detal == 'dt')
+        {
+            alert('detal field is empty !');
+            return;
+        }
+
+        if (master == 'mt')
+        {
+            alert('master field is empty !');
+            return;
+        }
+
+        //if (startDate == '') {
+        //    alert('start date is empty !');
+        //    return;
+        //}
+
+        //if (endDate == '') {
+        //    alert('end date is empty !');
+        //    return;
+        //}
+        
+      
+
+    $.ajax({
+        type: 'Post',
+        url: '@Url.Action("addrepair", "Repair")',
+        dataType: 'json',
+        data: { bancode: carid, detailid: detal, masterid: master, startdate: startDate, enddate: endDate },
+        success: function (data) {
+
+            if (data.Status == true) {
+                var rowsCount = $("tbody tr").length;
+                var table, rows;
+                
+                var bancodes = $('input#bancode').val();
+                var details = $('select#detalid :selected').val();
+                var masters = $('select#masterid :selected').val();
+                            
+                var startdatevisual = startDate.substring(8, 10) + '.' + startDate.substring(5, 7) + '.' + startDate.substring(0, 4);
+                var enddatevisual = endDate.substring(8, 10) + '.' + endDate.substring(5, 7) + '.' + endDate.substring(0, 4);
+            
+                if (rowsCount == 0) {
+                    $("p").remove();
+                    table = "<table class='table'><thead class='thead-light'><tr class='font-family'><th>Car</th><th>Detail</th><th>Master</th><th>StartDate</th><th>EndDate</th></tr></thead>" +
+                        "<tbody><tr id='" + data.Message + "' class='font-family'><td class='rowCell'>" + bancodes + "</td><td class='rowCell'>" + details + "</td><td class='rowCell'>" +
+                        masters + "</td><td class='rowCell'>" + startdatevisual + "</td><td class='rowCell'>" + enddatevisual +  "</td></tr>";
+                    $("div#tableDiv").html(table);
+                }
+                else {
+                    rows = $("tbody").html() + "<tr id='" + data.Message + "' class='font-family'><td class='rowCell'>" + bancodes    + "</td><td class='rowCell'>" + details +
+                        "</td><td class='rowCell'>" + masters + "</td><td class='rowCell'>" + startdatevisual + "</td><td class='rowCell'>" +
+                        enddatevisual + "</td></tr>";
+                    $("tbody").html(rows);
+                }
+
+
+                $('input#bancode').val('');
+                $('select#detalid').val('');
+                $('select#masterid').val('');
+                $('input#startDate').val('');
+                $('input#endDate').val('');
+               
+
+            }
+            else if (data.Status == false) {
+                alert(data.Message);
+            }
+        },
+
+        error: function () {
+
+        }
+    })
+    $('.modal').modal('hide');
+    })
+
+</script>
+

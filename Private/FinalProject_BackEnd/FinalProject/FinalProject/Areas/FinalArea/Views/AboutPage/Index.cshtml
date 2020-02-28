@@ -1,0 +1,58 @@
+﻿@model IEnumerable<About>
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="content-body">
+        <div class="row">
+            <div class="col-12 mb-30">
+                <div class="box">
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Image</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int count = 1;
+                                    }
+                                    @foreach (var about in Model)
+                                    {
+                                        <tr>
+                                            <th>@count</th>
+                                            <td>
+                                                <img src="~/img/@about.Image" style="width:150px" />
+                                            </td>
+                                            <td>
+                                                @if (about.Description.Length > 50)
+                                                {
+                                                    @Html.Raw(about.Description.Substring(0, 30) + "...")
+                                                }
+                                                else
+                                                {
+                                                    @Html.Raw(about.Description)
+                                                }
+                                            </td>
+                                            <td>
+                                                <a asp-action="Detail" asp-route-id="@about.Id" class="button button-outline button-success"><span class="fa fa-info"></span></a>
+                                                <a asp-action="Update" asp-route-id="@about.Id" class="button button-outline button-warning"><span class="fa fa-edit"></span></a>
+                                            </td>
+
+                                        </tr>
+                                        count++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

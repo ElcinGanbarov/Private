@@ -1,0 +1,90 @@
+﻿@model HomeModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="index.html">Əsas səhifə</a>
+            </li>
+            <li class="breadcrumb-item active">Məhsullar</li>
+        </ol>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+<!-- Shop Page Start -->
+<main id="main-shop">
+
+    <div class="main-shop-page ptb-80">
+        <div class="container">
+            <!-- Row End -->
+            <div class="row">
+                <!-- Sidebar Shopping Option Start -->
+                <div class="col-lg-3 order-2 order-lg-1 mt-all-30">
+                    <div class="sidebar shop-sidebar">
+                        <!-- Sidebar Categorie Start -->
+                        <div class="sidebar-categorie mb-30">
+                            <h3 class="sidebar-title">Məhsulun növləri</h3>
+                            <ul class="sidbar-style">
+                                @foreach (var categorie in Model.Categories)
+                                {
+                                    <li class="form-check list-group-item-action">
+                                        <a href="/Shop/Index?categoryid=@categorie.Id">@categorie.Name</a>
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                        <!-- Sidebar Categorie End -->
+                        <div class="sidebar-categorie mb-30">
+                            <h3 class="sidebar-title">Firmalar</h3>
+                            <ul class="sidbar-style">
+                                @foreach (var brand in Model.Brands)
+                                {
+                                    <li class="form-check">
+                                        <a href="/Shop/Index?brandid=@brand.Id">@brand.Name</a>
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                        <!-- Sidebar Categorie Start -->
+                    </div>
+                </div>
+                <!-- Sidebar Shopping Option End -->
+                <!-- Product Categorie List Start -->
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <!-- Grid & List View Start -->
+                    <div class="grid-list-top border-default universal-padding d-md-flex justify-content-md-between align-items-center mb-30">
+                        <div class="grid-list-view d-flex align-items-center mb-sm-15">
+                          
+                            <span class="show-items font-weight-bold text-success">Məhsullarımız</span>
+                        </div>
+                    </div>
+                    <!-- Grid & List View End -->
+                    <div class="shop-area mb-all-40">
+                        <!-- Grid & List Main Area End -->
+                        <div class="tab-content">
+                            <partial name="_searchPartial" model="@Model.Products">
+                         
+                        </div>
+                        <!-- Grid & List Main Area End -->
+                    </div>
+                   
+                    <!-- Shop Breadcrumb Area End -->
+                </div>
+                <!-- product Categorie List End -->
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+
+
+</main>
+<!-- Shop Page End -->

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Product>
+
+<div id="grid-view" class="tab-pane fade show active">
+    <div class="row border-hover-effect ">
+        @foreach (var product1 in Model)
+        {
+            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                <!-- Single Product Start -->
+                <div class="single-ponno-product">
+                    <div class="card card-title ">
+                        
+                        <img src="~/img/@product1.ProductImages.FirstOrDefault()?.ImageUrl" class="card-img-top card-img"
+                             alt="...">
+                        <div class="card-body">
+                            <p class="card-text">@product1.Name</p>
+                            <a class="add-to-cart" data-id="@product1.Id"><i class="fas fa-shopping-cart"></i></a>
+                            <p class="card-detail">@product1.BrandCategory?.Brand?.Name</p>
+                            @if (product1.Discount == 0)
+                            {
+                                <span class="new-price"><span>₼</span>@product1.Price</span>
+                            }
+                            else
+                            {
+
+                                <span class="old-price"><span>₼</span>@product1.Price</span>
+                                <span class="new-price">
+                                    <span>₼</span>
+                                    @(product1.Price - (product1.Price * product1.Discount) / 100)
+                                </span>
+                                <span class="discount">@product1.Discount<span>%</span></span>
+                            }
+
+                            <a class="detail-info" href="/ProductDetail/index?producid=@product1.Id">Ətraflı məlumat</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Product End -->
+            </div>
+        }
+
+        <style>
+            
+
+            .add-to-cart {
+                position: absolute;
+                right: 8px;
+                bottom: 50px;
+                font-size: 20px;
+                cursor: pointer;
+                color: red !important;
+                border: 1px solid green;
+                border-radius: 10px;
+                padding: 8px;
+                padding-right: 12px;
+                transition: all 1s;
+            }
+
+                .add-to-cart:hover {
+                    color: greenyellow !important;
+                    background-color: red;
+                    transform: rotate(360deg);
+                }
+        </style>
+
+    </div>
+    <!-- Row End -->
+</div>

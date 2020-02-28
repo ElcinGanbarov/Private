@@ -1,0 +1,206 @@
+﻿@model DetailModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<main id="main-productDetails">
+
+    <!-- Product Thumbnail Start -->
+    <div class="main-product-thumbnail ptb-80">
+        <div class="container">
+            <div class="row">
+                <!-- Main Thumbnail Image Start -->
+                <div class="col-lg-5 col-md-6 mb-all-40">
+                    <!-- Thumbnail Large Image start -->
+                    <div class="tab-content">
+
+                       
+
+                        @foreach (var item in Model.ProductImages)
+                        {
+
+                            <div id="thumb-@item.Id" class="tab-pane fade show @item.Active">
+                                <a data-fancybox="images" style="width:100%;height:266px;">
+                                    <img src="~/img/@item.ImageUrl" style="width:100%;height:100%">
+                                </a>
+                            </div>
+                        }
+
+
+
+                    </div>
+                    <!-- Thumbnail Large Image End -->
+                    <!-- Thumbnail Image End -->
+                    <div class="product-thumbnail">
+                        <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
+                            @foreach (var image in Model.ProductImages)
+                            {
+                                <a class="@image.Active" data-toggle="tab" href="#thumb-@image.Id" style="width:100%;height:106px;">
+                                    <img src="~/img/@image.ImageUrl" alt="product-thumbnail" style="width:100%;height:100%">
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                    <!-- Thumbnail image end -->
+                </div>
+                <!-- Main Thumbnail Image End -->
+                <!-- Thumbnail Description Start -->
+                <div class="col-lg-7 col-md-6">
+                    <div class="thubnail-desc ">
+                        <h3 class="product-header">@Model.Product.Name</h3>
+                        <div class="pro-thumb-price mt-20">
+
+                            @if (Model.Product.Discount == 0)
+                            {
+                                <p>
+                                    <span class="new-price">⫙@Model.Product.Price</span>
+
+                                </p>
+                            }
+                            else
+                            {
+                                <p>
+                                    <span class="new-price">
+                                        ⫙@(Model.Product.Price - (Model.Product.Price
+               * Model.Product.Discount) / 100)
+                                    </span>
+                                    <del class="old-price">⫙@Model.Product.Price</del>
+                                </p>
+                            }
+
+                        </div>
+                        <p class="pro-desc-details">@Model.Product.Details </p>
+                        <div class="quatity-stock mt-5">
+                            <ul class="d-flex flex-wrap">
+                                <li>
+                                    <a style="color:black;font-size:15px;font-weight:600;padding:10px;" class="btn btn-outline-primary  add-to-cart" data-id="@Model.Product.Id" @*href="/Cart/Add/@Model.Product.Id*@">Səbətə əlavə et</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Thumbnail Description End -->
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Product Thumbnail End -->
+    <!-- Product Thumbnail Description Start -->
+    <div class="thumnail-desc  pb-80">
+        <div class="container">
+            <div class="thumb-desc-inner">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="main-thumb-desc nav tabs-area" role="tablist">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#dtail">Məhsul haqqında</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#review">Rəylər</a>
+                            </li>
+                        </ul>
+                        <!-- Product Thumbnail Tab Content Start -->
+                        <div class="tab-content thumb-content">
+                            <div id="dtail" class="tab-pane fade show active">
+                                <p>@Model.Product.Details</p>
+                            </div>
+                            <div id="review" class="tab-pane fade">
+                                <!-- Reviews Start -->
+                                <div class="review">
+                                    <div class="group-title">
+                                        <h2>Alıcının rəyləri</h2>
+                                    </div>
+                                    <h4 class="review-mini-title">Məhsul üçün rəyinizi bildirə bilərsiniz</h4>
+
+                                </div>
+                                <!-- Reviews End -->
+                                <!-- Reviews Start -->
+
+                                <div class="review mt-10">
+                                    <!-- Reviews Field Start -->
+                                    <div class="riview-field mt-40">
+                                       
+                                            <div class="form-group">
+                                                <div class="fb-comments" data-href="https://localhost:44330/ProductDetail/index?producid=@Model.Product.Id/default.aspx" data-numposts="5" data-colorscheme="light"></div>
+                                            </div>
+                                            
+                                       
+                                    </div>
+                                    <!-- Reviews Field Start -->
+                                </div>
+
+                                <!-- Reviews End -->
+                            </div>
+                        </div>
+                        <!-- Product Thumbnail Tab Content End -->
+                    </div>
+                </div>
+                <!-- Row End -->
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Product Thumbnail Description End -->
+    <!-- More Product Start Here -->
+    <div class="more-product pb-80">
+        <div class="container">
+            <div class="section-title text-center mb-50">
+                <h2>Oxşar məhsullar</h2>
+            </div>
+
+            <div class="feature-pro-active owl-carousel">
+                @foreach (var product1 in Model.LikeProducts)
+                {
+              
+                    <div class="single-ponno-product">
+                      
+                        <div class="pro-img">
+                            <div class="card card-title">
+                                <img src="~/img/@Model.ProductImages.FirstOrDefault()?.ImageUrl" style="height:100%" class="card-img-top card-img">
+                                <div class="card-body">
+                                    <a href="/ProductDetail/index?producid=@product1.Id">
+                                        <p class="card-text">@product1.Name</p>
+                                    </a>
+                                    <p class="card-detail">@product1.BrandCategory.Brand.Name</p>
+
+                                    @if (product1.Discount == 0)
+                                    {
+                                        <span class="new-price"><span>₼</span>@product1.Price</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="old-price"><span>₼</span>@product1.Price</span>
+                                        <span class="new-price">
+                                            <span>₼</span>@(product1.Price -
+                            (product1.Price * product1.Discount) / 100)
+                                        </span>
+                                        <span class="discount">@product1.Discount<span>%</span></span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                
+                }
+
+            </div>
+           
+        </div>
+    </div>
+    <!-- More Product End Here -->
+
+</main>
+
+<div id="fb-root"></div>  
+<script>(function(d, s, id) {  
+  var js, fjs = d.getElementsByTagName(s)[0];  
+  if (d.getElementById(id)) return;  
+  js = d.createElement(s); js.id = id;  
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";  
+  fjs.parentNode.insertBefore(js, fjs);  
+}(document, 'script', 'facebook-jssdk'));</script>
+

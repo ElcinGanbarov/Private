@@ -1,0 +1,119 @@
+﻿ @model BioFooter
+    <!-- footer start -->
+<footer>
+    <section id="footer">
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-lg-3">
+                    <div class="logo-footer">
+                        <a href="#"><img src="~/img/logo/@Model.Image" style="height: 60px;" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <a href="https://www.facebook.com/cavid.cuerpo" target="_blank">
+                                <li>
+                                    <span class="fb fab fa-facebook-square"></span>
+                                </li>
+                            </a>
+                            <a href="https://twitter.com/?lang=ru" target="_blank">
+                                <li>
+                                    <span class="tw fab fa-twitter-square"></span>
+                                </li>
+                            </a>
+                            <a href="https://www.google.az/" target="_blank">
+                                <li>
+                                    <span class="go fab fa-google-plus-square"></span>
+                                </li>
+                            </a>
+                            <a href="https://www.linkedin.com/in/javid-bashirov-681266189/" target="_blank">
+                                <li>
+                                    <span class="lin fab fa-linkedin"></span>
+                                </li>
+                            </a>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="foot-right">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="foot-list">
+                                    <ul>
+                                        <li class="foot-title">Şirkət</li>
+                                        <li>
+                                            <a asp-controller="About" asp-action="Index">Haqqımızda</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://xezerxeber.az/">Xəbərlər</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="About" asp-action="Index">İşçilərimiz</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="foot-list">
+                                    <ul>
+                                        <li class="foot-title">Xidmətlərimiz</li>
+                                        <li>
+                                            <a asp-controller="Account" asp-action="Login">Daxil olmaq</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Account" asp-action="Register">Qeydiyyat</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Shop" asp-action="Index">Münasib qiymətlər</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="foot-list">
+                                    <ul>
+                                        <li class="foot-title">Məhsullar</li>
+                                        <li>
+                                            <a href="/Shop/Index?categoryid=3">Noutbook</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Shop/Index?categoryid=2">Televizor</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Shop/Index?categoryid=1">Mobil Telefon</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="footer-bottom">
+                <div class="phone">
+                    <span class="phone-icon fas fa-phone-square"></span>
+                    <span class="phone-num btn btn-outline-info" style="color:white;">@Model.MobilePhone</span>
+                </div>
+                <div class="mail">
+                    <span class="mail-icon fas fa-envelope-square"></span>
+                    <span class="our-mail btn btn-outline-info" style="color:white;">@Model.Email</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</footer>
+<!-- footer end -->

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+@model Product
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<a asp-action="index" class="btn btn-outline-info my-3">Mehsul Siyahisi</a>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <form method="post">
+                <input asp-for="Id" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="Title">Mehsulun adi</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+               
+                    <label asp-for="Price" >Mehsulun qiymeti</label>
+                    <input asp-for="Price" asp-format="{0:0.##}" class="form-control" />
+                    <span asp-validation-for="Price"  class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId">Mehsulun kateqoriyasi</label>
+                    <select asp-for="CategoryId" asp-items="@ViewBag.Category" class="form-control"></select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <input type="submit" class="btn btn-outline-success" width="30px" value="Mehsulu Yenile" />
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

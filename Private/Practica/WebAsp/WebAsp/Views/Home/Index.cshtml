@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<a asp-controller="aboutus" asp-action="index">Names</a>
+<a asp-controller="news" asp-action="read" asp-route-slug="yeni-xeberler-burada">Yeni Xeberler</a>
+<div class="row mt-5">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    @*<price current-price="@item.Price" discount-price="@item.DiscountPrice"></price>*@
+                    <tag current-price="@item.Price" discount-price="@item.DiscountPrice"></tag>
+                    @*<h6 class="card-subtitle mb-2 text-muted">
+                            @if (item.DiscountPrice == null)
+                            {
+                                <span>@item.Price.ToString("0.##")</span>
+                            }
+                            else
+                            {
+                                <del><span>@item.Price.ToString("0.##")</span></del>
+                                <span>@item.DiscountPrice.Value.ToString("0.##")</span>
+
+                            }
+                        </h6>*@
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="row">
+   <vc:partner-list col-no="3"></vc:partner-list>
+</div>
